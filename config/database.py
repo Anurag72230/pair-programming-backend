@@ -8,6 +8,12 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
+if not DATABASE_URL:
+    raise ValueError(
+        "DATABASE_URL environment variable is not set. "
+        "Please set it in Railway environment variables or .env file."
+    )
+
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,  
